@@ -1,0 +1,313 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+a[href="#top"] {
+  margin: 1rem;
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+h2 {
+  margin-top: 50vh;
+  text-align: center;
+}
+
+img {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.menu {
+  margin-bottom: 100vh;
+  font-size: 125%;
+}
+
+.menu li {
+  margin-bottom: 1rem;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+  height: 80vh;
+  background-color: #222;
+  border: medium solid #000;
+}
+
+.item {
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #666;
+  border: medium solid #999;
+}
+.sub-item {
+  padding: 1rem;
+  border: medium solid #ccc;
+  background-color: #ddd;
+}
+.grid-explicit {
+  display: grid;
+  /*Grid de 3x3*/
+  grid-template-columns: 50% 100px 1fr;
+  grid-template-rows: 2rem 20vh 30%;
+  /*Grid de 5x4 */
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(4, auto);
+  /*Grid de 4x5*/
+  grid-template-columns: 20% repeat(2, 30%) 20%;
+  grid-template-rows: repeat(5, auto);
+  /*gap row column*/
+  gap: 1vh 1vw;
+  gap: 0;
+}
+.grid-explicit .item:nth-child(10) {
+  color: aqua;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row: 2/3;
+  grid-column: 3/5;
+  /*grid-area:grid-row-start/grid-row-end/grid-column-start/grid-column-end*/
+  grid-area: 2/3/3/5;
+}
+.grid-explicit .item:nth-child(12) {
+  color: aqua;
+  grid-row: span 2;
+  grid-column: span 3;
+}
+/*.item:nth-child(15) {
+  color: aqua;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 2;
+}*/
+.grid-line-names {
+  display: grid;
+  /*Grid de 3cx3r*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: [linea-c1] 1fr [linea -c2] 1fr[linea-c3] 1fr [linea-c4];
+  grid-template-rows: [linea-r1] 1fr [linea-r2] 1fr[linea-r3] 1fr [linea-r4];
+  grid-template-rows: [linea-r1] auto [linea-r2] auto[linea-r3] auto [linea-r4];
+}
+.grid-line-names .item:nth-child(3) {
+  color: aqua;
+  grid-row: linea-r3 / linea-r4;
+  grid-column: linea-c1 / linea-c4;
+  /*grid-area:linea-r3 /linea-r4 /linea-c1 /linea-c4*/
+}
+.grid-areas {
+  display: grid;
+  /*grid 2cx3r*/
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: 100px repeat(2, 1fr) 60px;
+  grid-template-areas:
+    "header header"
+    "content sidebar"
+    "content ."
+    "footer footer";
+}
+.header {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.footer {
+  grid-area: footer;
+}
+.grid-implicit {
+  /*Grid de 4cx3r*/
+  display: grid;
+  display: inline-grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 200px);
+}
+.grid-flow {
+  display: grid;
+  /*Grid de 5cx3r*/
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 150px);
+  grid-auto-flow: row;
+  grid-auto-rows: 50px;
+  grid-auto-flow: column;
+  grid-auto-columns: 50px;
+}
+.grid-flow-dense {
+  display: grid;
+  /*Grid de 5cx4r*/
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 100px);
+  grid-auto-flow: row dense;
+  grid-auto-flow: column dense;
+}
+/*.grid-flow-dense .item:nth-child(9) {
+  color: aqua;
+  grid-row: span 3;
+  grid-column: span 3;
+}*/
+.grid-flow-dense .item:nth-child(11) {
+  color: aqua;
+  grid-row: span 3;
+  grid-column: span 3;
+}
+.grid-layers {
+  display: grid;
+  /*Grid de 4cx4r*/
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+.grid-layers .item:nth-child(1) {
+  background-color: yellow;
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+.grid-layers .item:nth-child(2) {
+  background-color: blue;
+  grid-column: 3/5;
+  grid-row: 1/3;
+}
+.grid-layers .item:nth-child(3) {
+  background-color: greenyellow;
+  grid-column: 1/3;
+  grid-row: 3/5;
+}
+.grid-layers .item:nth-child(4) {
+  background-color: lightcoral;
+  grid-column: 3/5;
+  grid-row: 3/5;
+}
+.grid-layers .item:nth-child(5) {
+  background-color: darkorange;
+  opacity: 75%;
+  grid-column: 2/4;
+  grid-row: 2/4;
+}
+.grid-order {
+  display: grid;
+  /*Grid de 3cx2r*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.grid-order .item:nth-child(1) {
+  /*defaul es 0, valores negativos y positivos*/
+  order: 1;
+}
+.grid-order .item:nth-child(2) {
+  order: 2;
+}
+.grid-order .item:nth-child(5) {
+  order: -1;
+}
+.grid-align {
+  display: grid;
+  /*Grid de 3cx2r*/
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  /* justify-items alinea mis elementos en el eje horizontal (x)*/
+  justify-items: stretch;
+  justify-items: center;
+  justify-items: start;
+  justify-items: end;
+  /* alingn-items alinea mis elementos en el eje vertical (y)*/
+  align-items: stretch;
+  align-items: start;
+  align-items: flex-end;
+  align-items: center;
+}
+.grid-align .item:nth-child(4) {
+  justify-self: start;
+  align-self: start;
+}
+.grid-align-tracks {
+  display: grid;
+  /*Grid de 3cx2r*/
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  /*justify-content alinea los tracks de la grid en el eje horizontal (x)*/
+  justify-content: start;
+  justify-content: end;
+  justify-content: center;
+  justify-content: space-between;
+  justify-content: space-around;
+  justify-content: space-evenly;
+  /* align-content alinea los tracks de la grid en el eje vertical (y)*/
+  align-content: start;
+  align-content: flex-end;
+  align-content: center;
+  align-content: space-between;
+  align-content: space-around;
+  align-content: space-evenly;
+}
+.grid-min-max {
+  display: grid;
+  /*Grid de 4cx?*/
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(100px, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, 200px));
+  grid-template-columns: repeat(4, minmax(100px, min-content));
+  grid-template-columns: repeat(4, minmax(100px, max-content));
+  grid-template-columns: repeat(4, minmax(max-content, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, max-content));
+}
+.grid-repeat {
+  display: grid;
+  /*Grid de 4cx4r*/
+  grid-template-columns: repeat(4, 10% 20% 30% 40%);
+  grid-template-columns: repeat(3, 10% 20% 30% 40%);
+  grid-template-columns: repeat(1, 10% 20% 30% 40%);
+  grid-template-rows: repeat(2, 100px 200px);
+  grid-auto-rows: 150px;
+}
+.grid-dynamics {
+  display: grid;
+  /*Grid de 4cx?*/
+  grid-template-columns: repeat(4, 100px);
+  /*auto-fill rellena la grid con tracks generados dinamicamente*/
+  grid-template-columns: repeat(auto-fill, 100px);
+  /*auto-filt ajusta la grid con los tracks existentes*/
+  grid-template-columns: repeat(auto-fit, 100px);
+}
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1vw;
+}
+.grid-nested {
+  display: grid;
+  /*Grid de 3cx?*/
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid {
+  display: grid;
+  /* Grid de 3cx4r*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+.subgrid {
+  /*para que la caracteristica de subgrid funcione es necesario hacer lo siguiente
+  1) Definir explicitamente el tamaño que ocupara el elemento que aplicara subgrid dentro del contenedor padre grid es decir definir sus propiedades grid-column y grid-row*/
+  grid-column: span 3;
+  grid-row: 1/3;
+}
